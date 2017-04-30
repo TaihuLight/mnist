@@ -7,20 +7,66 @@ database of handwritten digits. Intended as a private exercise to consolidating
 some of the knowledge I gained from Andrew Ng's Machine Learning offering on
 Coursera. Currently still a work in progress.
 
-Instructions
+Requirements
 ------------
-Run make all on the command line to build the project. Afterwards, an
-executable `main` will have been created in `build/`. To run, first download
-the MNIST database from
+* Armadillo >=7.800.2
+* Doxygen
+* GCC or Clang
+* GNU Make
+
+Installation
+------------
+Download and install version 7.800.2 or later of Armadillo, as per the
+instructions on their website:
 ```
-http://yann.lecun.com/exdb/mnist/
+http://arma.sourceforge.net/download.html
 ```
-and extract the data files into the same directory. Next, run `main` with the
-path to the MNIST data files as a command line argument. Currently, the
-program will output its accuracy on the test set in a percentage for a fixed
-choice of network parameters (e.g., the numbers of hidden layers and -nodes,
-the learning rate, ...). In the future, these will be made configurable from
-the command line.
+On the developer's machine, running Lubuntu 16.10, the following steps were
+taken to this end. On the command line, type
+```
+sudo apt-get install cmake libopenblas-dev libarpack++2-dev
+```
+Next, navigate to the directory where you would like to download the
+Armadillo sources, and type
+```
+wget http://sourceforge.net/projects/arma/files/armadillo-7.800.2.tar.xz
+tar xf armadillo-7.800.2.tar.xz
+cd armadillo-7.800.2.tar.xz
+cmake .
+make
+sudo make install
+```
+Next, install Doyxgen. Again, on Lubuntu 16.10, one may proceed as follows:
+```
+sudo apt-get install graphviz doxygen
+```
+The MNIST database will have to be downloaded separately. Create a directory
+where you would like to store it, and from there type
+```
+wget http://yann.lecun.com/exdb/mnist/train-images-idx3-ubyte.gz
+wget http://yann.lecun.com/exdb/mnist/train-labels-idx1-ubyte.gz
+wget http://yann.lecun.com/exdb/mnist/t10k-images-idx3-ubyte.gz
+wget http://yann.lecun.com/exdb/mnist/t10k-labels-idx1-ubyte.gz
+gunzip *
+```
+Clone or download the sources, e.g., through typing
+```
+wget https://github.com/arnobastenhof/mnist/archive/master.zip
+unzip master.zip
+```
+From the project root, type
+```
+make
+```
+
+Usage
+-----
+After running `make`, an executable file called `main` will have been created
+in `build/`. When executing it, supply the path to the MNIST database as a
+command line parameter. Currently, the program will output its accuracy on the
+test set in a percentage for a fixed choice of network parameters (e.g., the
+numbers of hidden layers and -nodes, the learning rate, ...). In the future,
+these will be made configurable from the command line.
 
 TODO
 ----
